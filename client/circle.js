@@ -1,6 +1,6 @@
 function Circle(game){
 
-    
+    this.move = true;
 
 
     this.radius = 30;
@@ -16,7 +16,7 @@ function Circle(game){
     var k = Math.floor((Math.random() * 6));
     this.color = 'rgb(' + Math.floor(255-42.5 * i) + ',' +
         Math.floor(255-42.5* j) + ','+Math.floor(255-42.5 * k)+ ')';
-    console.log(this.color);
+    // console.log(this.color);
     Entity.call(this, game, this.x, this.y);
     this.game = game;
     this.ctx = game.ctx;
@@ -116,9 +116,12 @@ Circle.prototype.update = function () {
     for(var j = 0; j<this.game.entities.length; j++){
         var ent = this.game.entities[j];
         if(this != ent && ent instanceof Rectangle && this.falling){
-            this.velocity.x = 0;
+            if(this.move){
+                this.velocity.x = 0;
 
-            this.velocity.y = (1.2 * this.mass);
+                this.velocity.y = (1.2 * this.mass);
+            }
+
         }
 
 
@@ -146,14 +149,16 @@ Circle.prototype.update = function () {
         var ent = this.game.entities[i];
         if(this != ent && ent instanceof Rectangle && this.collideRecTop(ent)){
             this.falling = false;
+            if(this.move){
+                if(!this.hitWall){
+                    this.velocity.x = this.mass * 0.8;
+                }else{
+                    this.velocity.x = -(this.mass * 0.8);
+                }
 
-            if(!this.hitWall){
-                this.velocity.x = this.mass * 0.8;
-            }else{
-                this.velocity.x = -(this.mass * 0.8);
+                this.velocity.y = 0;
             }
 
-            this.velocity.y = 0;
             // console.log(this.game.entities[i].toString());
 
         }else {

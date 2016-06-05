@@ -4,13 +4,27 @@
 <head>
     <meta charset="utf-8">
     <title>Assignment 2</title>
+    <script type="text/javascript" src="http://76.28.150.193:8888/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./gameengine.js"></script>
+    <script type="text/javascript" src="./background.js"></script>
     <script type="text/javascript" src="./circle.js"></script>
     <script type="text/javascript" src="./rectangle.js"></script>
     <script type="text/javascript" src="./main.js"></script>
 </head>
 <body>
+
     <canvas id="gameWorld" width="800" height="640" style="border: 1px solid black;background: white"></canvas>
+    <!--<form>-->
+        <!--<a href="javascript:functionPause();" ><input onclick="change();" type="button" value="Pause" id="pause" ></a>-->
+        <!--<button id ="play" title="Play the animation">Play</button>-->
+    <!--</form>-->
+
+
+    <form>
+        <button id="save" title="Save the state">Save</button>
+        <button id="load" title="Load the state">Load</button>
+    </form>
+
 </body>
 </html>
